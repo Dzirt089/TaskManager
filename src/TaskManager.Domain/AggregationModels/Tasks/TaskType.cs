@@ -1,3 +1,5 @@
+using TaskManager.Domain.Exceptions;
+
 namespace TaskManager.Domain.AggregationModels.Tasks;
 
 public sealed class TaskType
@@ -20,7 +22,7 @@ public sealed class TaskType
 	{
 		if (string.IsNullOrWhiteSpace(name))
 		{
-			throw new ArgumentException("Task type name is required.", nameof(name));
+			throw new DomainException($"Task type name is required. {nameof(name)}");
 		}
 
 		Name = name.Trim();

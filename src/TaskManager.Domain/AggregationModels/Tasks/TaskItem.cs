@@ -1,3 +1,5 @@
+using TaskManager.Domain.Exceptions;
+
 namespace TaskManager.Domain.AggregationModels.Tasks;
 
 public sealed class TaskItem
@@ -14,7 +16,7 @@ public sealed class TaskItem
 	{
 		if (taskTypeId == Guid.Empty)
 		{
-			throw new ArgumentException("Task type id is required.", nameof(taskTypeId));
+			throw new DomainException($"Task type id is required. {nameof(taskTypeId)}");
 		}
 
 		Id = Guid.NewGuid();
@@ -62,7 +64,7 @@ public sealed class TaskItem
 	{
 		if (taskTypeId == Guid.Empty)
 		{
-			throw new ArgumentException("Task type id is required.", nameof(taskTypeId));
+			throw new DomainException($"Task type id is required. {nameof(taskTypeId)}");
 		}
 
 		SetTitle(title);
@@ -77,7 +79,7 @@ public sealed class TaskItem
 	{
 		if (string.IsNullOrWhiteSpace(title))
 		{
-			throw new ArgumentException("Title is required.", nameof(title));
+			throw new DomainException($"Title is required. {nameof(title)}");
 		}
 
 		Title = title.Trim();
