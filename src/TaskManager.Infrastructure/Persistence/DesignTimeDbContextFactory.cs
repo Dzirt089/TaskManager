@@ -8,9 +8,12 @@ namespace TaskManager.Infrastructure.Persistence
 	{
 		public TaskManagerDbContext CreateDbContext(string[] args)
 		{
+			var basePath = Path.Combine(Directory.GetCurrentDirectory(), "..", "TaskManager.Api");
+
 			var configurationRoot = new ConfigurationBuilder()
-				.SetBasePath(Directory.GetCurrentDirectory())
-				.AddJsonFile("appsettings.json")
+				.SetBasePath(basePath)
+				.AddJsonFile("appsettings.json", optional: false)
+				.AddJsonFile("appsettings.Development.json", optional: true)
 				.AddEnvironmentVariables()
 				.Build();
 
