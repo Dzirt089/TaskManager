@@ -27,15 +27,15 @@ public sealed class TasksController : ControllerBase
 	}
 
 	/// <summary>
-	/// Returns a paged list of tasks with optional filtering and sorting.
+	/// Возвращает постраничный список задач с дополнительной фильтрацией и сортировкой.
 	/// </summary>
-	/// <param name="page">1-based page number.</param>
-	/// <param name="pageSize">Number of items per page, up to 100.</param>
-	/// <param name="status">Optional task status filter.</param>
-	/// <param name="taskTypeId">Optional task type filter.</param>
-	/// <param name="sortBy">Sort order for the returned items.</param>
-	/// <param name="cancellationToken">Request cancellation token.</param>
-	/// <returns>Paged task list response.</returns>
+	/// <param name="page">Номер страницы от 1.</param>
+	/// <param name="pageSize">Количество элементов на странице, до 100.</param>
+	/// <param name="status">Необязательный фильтр по статусу задачи.</param>
+	/// <param name="taskTypeId">Необязательный фильтр по типу задачи.</param>
+	/// <param name="sortBy">Порядок сортировки возвращаемых элементов.</param>
+	/// <param name="cancellationToken">Токен отмены запроса.</param>
+	/// <returns>Ответ на постраничный список задач.</returns>
 	[HttpGet]
 	[ProducesResponseType(typeof(TaskListResponse), StatusCodes.Status200OK)]
 	[ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
@@ -52,11 +52,11 @@ public sealed class TasksController : ControllerBase
 	}
 
 	/// <summary>
-	/// Returns a single task by id.
+	/// Возвращает одну задачу по идентификатору.
 	/// </summary>
-	/// <param name="id">Task identifier.</param>
-	/// <param name="cancellationToken">Request cancellation token.</param>
-	/// <returns>Task details.</returns>
+	/// <param name="id">Идентификатор задачи.</param>
+	/// <param name="cancellationToken">Токен отмены запроса.</param>
+	/// <returns>Детали задачи.</returns>
 	[HttpGet("{id:guid}")]
 	[ProducesResponseType(typeof(TaskItemDto), StatusCodes.Status200OK)]
 	[ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
@@ -67,11 +67,11 @@ public sealed class TasksController : ControllerBase
 	}
 
 	/// <summary>
-	/// Creates a new task.
+	/// Создает новую задачу.
 	/// </summary>
-	/// <param name="request">Task payload.</param>
-	/// <param name="cancellationToken">Request cancellation token.</param>
-	/// <returns>Created task identifier.</returns>
+	/// <param name="request">Payload для создания задачи.</param>
+	/// <param name="cancellationToken">Токен отмены запроса.</param>
+	/// <returns>Идентификатор созданной задачи.</returns>
 	[HttpPost]
 	[ProducesResponseType(typeof(Guid), StatusCodes.Status201Created)]
 	[ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
@@ -86,11 +86,11 @@ public sealed class TasksController : ControllerBase
 	}
 
 	/// <summary>
-	/// Updates an existing task.
+	/// Обновляет существующую задачу.
 	/// </summary>
-	/// <param name="id">Task identifier.</param>
-	/// <param name="request">Updated task payload.</param>
-	/// <param name="cancellationToken">Request cancellation token.</param>
+	/// <param name="id">Идентификатор задачи.</param>
+	/// <param name="request">Обновленные данные задачи.</param>
+	/// <param name="cancellationToken">Токен отмены запроса.</param>
 	[HttpPut("{id:guid}")]
 	[ProducesResponseType(StatusCodes.Status204NoContent)]
 	[ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
@@ -105,10 +105,13 @@ public sealed class TasksController : ControllerBase
 	}
 
 	/// <summary>
-	/// Deletes a task by id.
+	/// Удаляет задачу по идентификатору.
+	/// 
+	/// Возвращает `204 No Content`, потому что после успешного удаления
+	/// дополнительное тело ответа уже не несёт полезной информации.
 	/// </summary>
-	/// <param name="id">Task identifier.</param>
-	/// <param name="cancellationToken">Request cancellation token.</param>
+	/// <param name="id">Идентификатор задачи.</param>
+	/// <param name="cancellationToken">Токен отмены запроса.</param>
 	[HttpDelete("{id:guid}")]
 	[ProducesResponseType(StatusCodes.Status204NoContent)]
 	[ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]

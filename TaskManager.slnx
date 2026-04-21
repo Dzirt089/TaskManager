@@ -1,6 +1,7 @@
 <Solution>
   <Folder Name="/common/">
-    <File Path="src/TaskManager.Api/Dockerfile" />
+    <File Path="docker-compose.yml" />
+    <File Path="README.md" />
   </Folder>
   <Folder Name="/src/">
     <Project Path="src/TaskManager.Api/TaskManager.Api.csproj" />
@@ -8,5 +9,7 @@
     <Project Path="src/TaskManager.Domain/TaskManager.Domain.csproj" />
     <Project Path="src/TaskManager.Infrastructure/TaskManager.Infrastructure.csproj" />
   </Folder>
-  <Folder Name="/tests/" />
+  <Folder Name="/tests/">
+    <Project Path="tests/TaskManager.Domain.UnitTests/TaskManager.Domain.UnitTests.csproj" Id="9028ec91-e074-487d-90a5-faf1d6e6ba97" />
+  </Folder>
 </Solution>

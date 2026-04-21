@@ -13,7 +13,7 @@ using TaskManager.Application.TaskTypes.Queries.GetTaskTypes;
 namespace TaskManager.Api.Controllers;
 
 /// <summary>
-/// Exposes CRUD operations for task type reference data.
+/// Предоставляет операции CRUD для справочных данных типа задачи.
 /// </summary>
 [ApiController]
 [Route("api/task-types")]
@@ -27,7 +27,7 @@ public sealed class TaskTypesController : ControllerBase
 	}
 
 	/// <summary>
-	/// Returns all task types.
+	/// Возвращает все типы задач.
 	/// </summary>
 	[HttpGet]
 	[ProducesResponseType(typeof(IReadOnlyCollection<TaskTypeDto>), StatusCodes.Status200OK)]
@@ -38,7 +38,7 @@ public sealed class TaskTypesController : ControllerBase
 	}
 
 	/// <summary>
-	/// Returns a single task type by id.
+	/// Возвращает один тип задачи по идентификатору.
 	/// </summary>
 	[HttpGet("{id:guid}")]
 	[ProducesResponseType(typeof(TaskTypeDto), StatusCodes.Status200OK)]
@@ -50,7 +50,7 @@ public sealed class TaskTypesController : ControllerBase
 	}
 
 	/// <summary>
-	/// Creates a new task type.
+	/// Создает новый тип задачи.
 	/// </summary>
 	[HttpPost]
 	[ProducesResponseType(typeof(Guid), StatusCodes.Status201Created)]
@@ -63,7 +63,7 @@ public sealed class TaskTypesController : ControllerBase
 	}
 
 	/// <summary>
-	/// Updates an existing task type.
+	/// Обновляет существующий тип задачи.
 	/// </summary>
 	[HttpPut("{id:guid}")]
 	[ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -77,7 +77,7 @@ public sealed class TaskTypesController : ControllerBase
 	}
 
 	/// <summary>
-	/// Deletes a task type if it is not referenced by tasks.
+	/// Удаляет тип задачи, если он не используется в задачах.
 	/// </summary>
 	[HttpDelete("{id:guid}")]
 	[ProducesResponseType(StatusCodes.Status204NoContent)]
