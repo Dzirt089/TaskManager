@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 
 using TaskManager.Application.Contracts.Exceptions;
+using TaskManager.Domain.Exceptions;
 
 namespace TaskManager.Api;
 
@@ -35,21 +36,31 @@ public sealed class GlobalExceptionHandler : IExceptionHandler
 							group => group.Key,
 							group => group.Select(x => x.ErrorMessage).ToArray())
 				}),
+
 			NotFoundException notFoundException => (
 				StatusCodes.Status404NotFound,
 				"Resource not found.",
 				notFoundException.Message,
 				new Dictionary<string, object?>()),
+
 			ConflictException conflictException => (
 				StatusCodes.Status409Conflict,
 				"Conflict.",
 				conflictException.Message,
 				new Dictionary<string, object?>()),
+
 			ArgumentException argumentException => (
 				StatusCodes.Status400BadRequest,
 				"Invalid request.",
 				argumentException.Message,
 				new Dictionary<string, object?>()),
+
+			DomainException domainException => (
+				StatusCodes.Status400BadRequest,
+				"Domain rule violation.",
+				domainException.Message,
+				new Dictionary<string, object?>()),
+
 			_ => (
 				StatusCodes.Status500InternalServerError,
 				"Unexpected error.",

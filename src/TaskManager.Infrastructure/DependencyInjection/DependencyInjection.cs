@@ -19,6 +19,9 @@ namespace TaskManager.Infrastructure.DependencyInjection
 
 			services.AddScoped<IApplicationDbContext>(provider => provider.GetRequiredService<TaskManagerDbContext>());
 
+			services.AddHealthChecks()
+				.AddNpgSql(connectionString, name: "postgres");
+
 			return services;
 		}
 	}
